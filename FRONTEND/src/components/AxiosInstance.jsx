@@ -10,4 +10,32 @@ const AxiosInstance = axios.create({
   },
 });
 
+AxiosInstance.interceptors.request.use(
+  (config) => {
+    const token = localStorage.getItem("Token");
+    if (token) {
+      config.headers.Authorization = `Token ${token}`;
+    } else {
+      config.headers.Authorization = ``;
+    }
+    return config;
+  }
+  /*(error) => {
+    return Promise.reject(error);
+  }
+    */
+);
+
+AxiosInstance.interceptors.response.use(
+  (response) => {
+    return response;
+  },
+  (error) => {
+    if (error.response.status === 401) {
+      localStorage.removeItem("Token");
+      window.location.href = "/";
+    }
+  }
+);
+
 export default AxiosInstance;
