@@ -45,9 +45,10 @@ const Login = () => {
           <Box className={"itemBox"}>
             <ButtonForm label={"Login"} type={"submit"} />
           </Box>
-          <Box className={"itemBox"}>
+          <Box className={"itemBox"} sx={{ flexDirection: "column" }}>
             <span>Don't have an account?&nbsp;</span>
-            <Link to={"/register"}>Register here</Link>
+            <Link to={"/register"}>Register here</Link> <br/>
+            <Link to={"/request/password_reset"}>Forgot password?</Link>
           </Box>
         </Box>
       </form>
