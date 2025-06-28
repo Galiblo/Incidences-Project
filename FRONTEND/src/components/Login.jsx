@@ -32,7 +32,10 @@ const Login = () => {
   return (
     <div className={"myBackground"}>
       {ShowMessage ? (
-        <MyMessage text={"Login has failed, please try again"} color={'#FF0011'} />
+        <MyMessage
+          text={"Login has failed, please try again"}
+          color={"#FF0011"}
+        />
       ) : null}
       <form onSubmit={handleSubmit(submission)}>
         <Box className={"whitebox"}>
@@ -54,8 +57,27 @@ const Login = () => {
           </Box>
           <Box className={"itemBox"} sx={{ flexDirection: "column" }}>
             <span>Don't have an account?&nbsp;</span>
-            <Link to={"/register"}>Register here</Link> <br />
-            <Link to={"/request/password_reset"}>Forgot password?</Link>
+            <Link
+              to={"/register"}
+              style={{
+                textAlign: "center",
+                textDecoration: "none",
+                color: "#1976d2",
+              }}
+            >
+              Register here
+            </Link>{" "}
+            <br />
+            <Link
+              to={"/request/password_reset"}
+              style={{
+                textAlign: "center",
+                textDecoration: "none",
+                color: "#1976d2",
+              }}
+            >
+              Forgot password?
+            </Link>
           </Box>
         </Box>
       </form>

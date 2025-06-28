@@ -28,7 +28,9 @@ const PasswordResetRequest = () => {
     <div className={"myBackground"}>
       {ShowMessage ? (
         <MyMessage
-          text={"If your email exists you have received an email with instructions to reset your password"}
+          text={
+            "If your email exists you have received an email with instructions to reset your password"
+          }
           color={"#69C9AB"}
         />
       ) : null}
@@ -43,6 +45,22 @@ const PasswordResetRequest = () => {
           <Box className={"itemBox"}>
             <ButtonForm label={"Request password reset"} type={"submit"} />
           </Box>
+          <Box
+            className="itemBox"
+            sx={{ display: "flex", justifyContent: "center" }}
+          >
+            <Link
+              to="/"
+              style={{
+                textAlign: "center",
+                textDecoration: "none",
+                color: "#1976d2",
+              }}
+            >
+              Go back
+            </Link>
+          </Box>
+
           <Box className={"itemBox"} sx={{ flexDirection: "column" }}></Box>
         </Box>
       </form>
