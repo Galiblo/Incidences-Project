@@ -1,4 +1,5 @@
 import "../App.css";
+import { React, useState } from "react";
 import { Box } from "@mui/material";
 import TextField from "./forms/TextField";
 import PasswordField from "./forms/PasswordField";
@@ -7,10 +8,12 @@ import { Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import AxiosInstance from "./AxiosInstance";
 import { useNavigate } from "react-router-dom";
+import MyMessage from "./MyMessage";
 
 const Login = () => {
   const navigate = useNavigate();
   const { handleSubmit, control } = useForm();
+  const [ShowMessage, setShowMessage] = useState(false);
   const submission = (data) => {
     AxiosInstance.post(`login/`, {
       email: data.email,
@@ -22,11 +25,15 @@ const Login = () => {
         navigate(`/home`);
       })
       .catch((error) => {
+        setShowMessage(true);
         console.error("Error during login", error);
       });
   };
   return (
     <div className={"myBackground"}>
+      {ShowMessage ? (
+        <MyMessage text={"Login has failed, please try again"} color={'#FF0011'} />
+      ) : null}
       <form onSubmit={handleSubmit(submission)}>
         <Box className={"whitebox"}>
           <Box className={"itemBox"}>
@@ -47,7 +54,7 @@ const Login = () => {
           </Box>
           <Box className={"itemBox"} sx={{ flexDirection: "column" }}>
             <span>Don't have an account?&nbsp;</span>
-            <Link to={"/register"}>Register here</Link> <br/>
+            <Link to={"/register"}>Register here</Link> <br />
             <Link to={"/request/password_reset"}>Forgot password?</Link>
           </Box>
         </Box>
